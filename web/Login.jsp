@@ -1,7 +1,13 @@
 <%-- 
-    Document   : Login
-    Created on : 11/06/2020, 05:45:12 PM
-    Author     : Kevin
+ * 
+ * EIF209
+ * Programación 4
+ * Proyecto #2
+ * Junio 2020
+ * Autores:
+ *         - 207900913 Kevin Sandoval Madrigal
+ *         - 000000000 Mariana Valverde Mora
+ *         - 000000000 Miguel Rodriguez Rangel
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,9 +15,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Login</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>.|.</h1>
     </body>
 </html>

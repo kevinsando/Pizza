@@ -1,7 +1,13 @@
 <%-- 
-    Document   : Registro
-    Created on : 11/06/2020, 05:45:04 PM
-    Author     : Kevin
+ * 
+ * EIF209
+ * Programación 4
+ * Proyecto #2
+ * Junio 2020
+ * Autores:
+ *         - 207900913 Kevin Sandoval Madrigal
+ *         - 000000000 Mariana Valverde Mora
+ *         - 000000000 Miguel Rodriguez Rangel
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
