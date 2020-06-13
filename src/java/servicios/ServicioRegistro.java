@@ -43,7 +43,7 @@ public class ServicioRegistro extends HttpServlet {
             Enumeration<String> p = request.getParameterNames();
 
             while (p.hasMoreElements()) {
-                String n = p.nextElement(); 
+                String n = p.nextElement();
                 String[] v = request.getParameterValues(n);
                 if (v.length == 1) {
                     r.put(n, v[0]);
@@ -63,14 +63,15 @@ public class ServicioRegistro extends HttpServlet {
             String direccion = r.get("direccion").toString();
             int rol = Integer.parseInt(r.get("rol").toString());
             int telefono = Integer.parseInt(r.get("tel").toString());
-            
-            Usuario u = new Usuario(id,usuario,clave,nombre,apellidos,direccion,rol,telefono);
-            System.out.println("Usuario: "+u.toString());
+
+            Usuario u = new Usuario(id, usuario, clave, nombre, apellidos, direccion, rol, telefono);
+            System.out.println("Usuario: " + u.toString());
             try {
                 servicio.guardarUsuario(u);
             } catch (SQLException ex) {
                 Logger.getLogger(ServicioRegistro.class.getName()).log(Level.SEVERE, null, ex);
             }
+            out.println("OK");
         }
     }
 
@@ -91,4 +92,5 @@ public class ServicioRegistro extends HttpServlet {
         return "Short description";
     }// </editor-fold>
     GestorBase servicio = new GestorBase();
+
 }

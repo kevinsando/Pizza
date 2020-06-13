@@ -9,6 +9,8 @@
  *         - 000000000 Mariana Valverde Mora
  *         - 000000000 Miguel Rodriguez Rangel
 */
+var resp;
+
 function init() {
 
 }
@@ -36,7 +38,12 @@ function guardarRegistro() {
         datos = new FormData();
     }
     function procesarRespuesta(datos) {
-        console.log(datos);
+        console.log("datos:"+datos);  
+        resp = datos;
+        var refM = document.getElementById("mensaje");
+        
+        refM.value = datos;
+        return datos;
     }
 
 }

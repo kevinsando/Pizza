@@ -60,10 +60,12 @@
                             <input type="number" 
                                    id="tel" name="tel" required /><br/>
                             <br/>
+                            <h1 id="mensaje"></h1>
                             <button type="submit">Registrarse</button>
                      
                         </div>
                     </form>
+                    
                 </div>
             </section>
             <footer></footer>
