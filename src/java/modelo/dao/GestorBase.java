@@ -44,6 +44,7 @@ public class GestorBase {
                 if (rs.next()) {
                     r = new Usuario(
                             rs.getString("id"),
+                            rs.getString("usuario"),
                             rs.getString("password"),
                             rs.getString("nombre"),
                             rs.getString("apellidos"),
@@ -59,6 +60,32 @@ public class GestorBase {
             bd.cerrarConexion();
         }
         return r;
+    }
+    public void guardarUsuario(Usuario elUsuario) throws SQLException {
+        try {
+            Connection cnx = bd.obtenerConexion();
+
+            try (PreparedStatement stm = cnx.prepareStatement(IMEC_base.GUARDAR_USUARIO.obtenerComando())) {
+                stm.clearParameters();
+
+                stm.setString(1, elUsuario.getId());
+                stm.setString(2, elUsuario.getUsuario());
+                stm.setString(3, elUsuario.getPassword());
+                stm.setString(4, elUsuario.getNombre());
+                stm.setString(5, elUsuario.getApellidos());
+                stm.setString(6, elUsuario.getDirrecion());
+                stm.setInt(7, elUsuario.getRol());
+                stm.setInt(8, elUsuario.getTelefono());
+
+                if (stm.executeUpdate() != 1) {
+                    throw new SQLException(String.format(
+                            "No se puede agregar el registro: '%s'", elUsuario.toString()));
+                }
+
+            }
+        } finally {
+            bd.cerrarConexion();
+        }
     }
 
     public static void main(String[] args) {

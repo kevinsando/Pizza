@@ -13,8 +13,9 @@ package modelo;
  */
 public class Usuario {
     
-    public Usuario(String id, String password, String nombre, String apellidos, String dirrecion, int rol, int telefono) {
+    public Usuario(String id, String usuario,String password, String nombre, String apellidos, String dirrecion, int rol, int telefono) {
         this.id = id;
+        this.usuario = usuario;
         this.password = password;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -26,6 +27,11 @@ public class Usuario {
     public String getId() {
         return id;
     }
+
+    public String getUsuario() {
+        return usuario;
+    }
+    
 
     public String getPassword() {
         return password;
@@ -53,11 +59,16 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", password=" + password + ", nombre=" + nombre + ", apellidos=" + apellidos + ", dirrecion=" + dirrecion + ", rol=" + rol + ", telefono=" + telefono + '}';
+        return "Usuario{" + "id=" + id + ", usuario=" + usuario + ", password=" + 
+                password + ", nombre=" + nombre + ", apellidos=" + apellidos + 
+                ", dirrecion=" + dirrecion + ", rol=" + rol + ", telefono=" + telefono + '}';
     }
+
+    
     
 
     private final String id;
+    private final String usuario;
     private final String password;
     private final String nombre;
     private final String apellidos;
