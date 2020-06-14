@@ -9,7 +9,6 @@
  *         - 000000000 Mariana Valverde Mora
  *         - 000000000 Miguel Rodriguez Rangel
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
