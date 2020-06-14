@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import modelo.Pizza;
 import modelo.Usuario;
 
 /**
@@ -61,6 +62,32 @@ public class GestorBase {
         }
         return r;
     }
+    public boolean verificarUsuario(String usuario, String clave) {
+        boolean encontrado = false;
+        Usuario r = null;
+        String nomb = null;
+        String ape = null;
+        try {
+            Connection cnx = bd.obtenerConexion();
+            try (PreparedStatement stm = cnx.prepareStatement(IMEC_base.RECUPERAR_USUARIO.obtenerComando())) {
+                stm.clearParameters();
+                stm.setString(1, usuario);
+                stm.setString(2, clave);
+                ResultSet rs = stm.executeQuery();
+                encontrado = rs.next();
+                if (encontrado) {
+                    ape = rs.getString("apellidos");
+                    nomb = rs.getString("nombre");
+                }
+            }
+
+        } catch (SQLException ex) {
+            System.err.printf("Excepción: '%s'%n", ex.getMessage());
+        } finally {
+            bd.cerrarConexion();
+        }
+        return encontrado;
+    }
     public void guardarUsuario(Usuario elUsuario) throws SQLException {
         try {
             Connection cnx = bd.obtenerConexion();
@@ -80,6 +107,31 @@ public class GestorBase {
                 if (stm.executeUpdate() != 1) {
                     throw new SQLException(String.format(
                             "No se puede agregar el registro: '%s'", elUsuario.toString()));
+                }
+
+            }
+        } finally {
+            bd.cerrarConexion();
+        }
+    }
+    public void guardarPizza(Pizza laPizza) throws SQLException{
+        try {
+            Connection cnx = bd.obtenerConexion();
+
+            try (PreparedStatement stm = cnx.prepareStatement(IMEC_base.GUARDAR_PIZZA.obtenerComando())) {
+                stm.clearParameters();
+
+                stm.setInt(1, laPizza.getId());
+                stm.setString(2, laPizza.getNombre());
+                stm.setInt(3, laPizza.getTipo());
+                stm.setDouble(4, laPizza.getPrecio_peq());
+                stm.setDouble(5, laPizza.getPrecio_med());
+                stm.setDouble(6, laPizza.getPrecio_gran());
+
+
+                if (stm.executeUpdate() != 1) {
+                    throw new SQLException(String.format(
+                            "No se puede agregar el registro: '%s'", laPizza.toString()));
                 }
 
             }

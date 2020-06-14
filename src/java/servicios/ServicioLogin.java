@@ -2,74 +2,97 @@ package servicios;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import modelo.dao.GestorBase;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  *
  * @author Kevin
  */
 @WebServlet(name = "ServicioLogin", urlPatterns = {"/ServicioLogin"})
-public class ServicioLogin extends HttpServlet {
 
+@MultipartConfig
+public class ServicioLogin extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServicioLogin</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServicioLogin at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            JSONObject r = new JSONObject();
+
+            Enumeration<String> p = request.getParameterNames();
+
+            while (p.hasMoreElements()) {
+                String n = p.nextElement();
+                System.out.println("Elemento: " + n);
+                String[] v = request.getParameterValues(n);
+                if (v.length == 1) {
+                    r.put(n, v[0]);
+                } else {
+                    JSONArray a = new JSONArray();
+                    for (String s : v) {
+                        a.put(s);
+                    }
+                    r.put(n, a);
+                }
+            }
+            
+
+            boolean usuarioValido = false;
+            String usuario = r.get("usuario").toString();
+            String password = r.get("clave").toString();
+
+            if (usuario != null && password != null) {
+                usuarioValido = servicio.verificarUsuario(usuario, password);
+                System.out.println("usuarioValido: "+usuarioValido);
+            }
+            if (usuarioValido) {
+                HttpSession sesion = request.getSession(true);
+                sesion.setAttribute("usuario", usuario);
+                out.println("OK");
+                System.out.println("OK");
+                request.setAttribute("usuario", usuario);
+                request.setAttribute("clave", password);
+                
+                response.sendRedirect("inicio.jsp");
+
+            } else {
+                System.out.println("ERROR");
+                out.println("ERROR");
+                response.sendRedirect("Registro.jsp");
+            }
+
+            System.out.printf("Datos enviados:\n%s\n", r.toString(4));
+
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
+    GestorBase servicio = new GestorBase();
 
 }

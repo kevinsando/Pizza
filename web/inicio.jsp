@@ -15,19 +15,42 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="js/scriptLogin.js" type="text/javascript"></script>
+        <link href="css/defaultP.css" rel="stylesheet" type="text/css"/>
+        <script src="js/scriptsLogin.js" type="text/javascript"></script>
         <title>Pizza</title>
     </head>
-    <body onload="init();">
+    <body id="menu" onload="init();">
         <div id="wrapper">
             <header></header>
+            <div id="titulo">
+                <img src="media/logo.jpg" alt=""/>
+                <h1>En construcción :D</h1>
+                <p>
+                    <%
+
+                        HttpSession sesionActual;
+                        sesionActual = request.getSession(true);
+                        sesionActual.invalidate();
+
+                    %>
+                </p>
+            </div>
             <div id="contents">
                 <section style="float: left; padding-left: 24px; width: 45%;">
-                    <h1>Parámetros de acceso</h1>
-                    <p>
-                        Nombre de usuario: <strong>'${param.usuario}'</strong><br />
-                        Clave de acceso: <strong>'${param.clave}'</strong>
-                    </p>
+
+                    <table class="credenciales">
+                        <thead>
+                            <tr>
+                                <th colspan="2"><h3>Menú</h3></th>
+                            </tr>
+                        </thead> 
+                        <tr>
+
+                        </tr>
+                        <tr>
+
+                        </tr>
+                    </table>
 
                     <p>
                         <a href="Login.jsp">Salir</a>
