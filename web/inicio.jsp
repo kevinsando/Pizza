@@ -14,6 +14,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="shortcut icon" href="pizza.png">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/defaultP.css" rel="stylesheet" type="text/css"/>
         <script src="js/scriptsLogin.js" type="text/javascript"></script>
