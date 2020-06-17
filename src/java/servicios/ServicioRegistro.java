@@ -1,4 +1,4 @@
-package servicios;
+/*package servicios;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,7 +27,7 @@ import org.json.JSONObject;
  *         - 207900913 Kevin Sandoval Madrigal
  *         - 000000000 Mariana Valverde Mora
  *         - 000000000 Miguel Rodriguez Rangel
- */
+ *//*
 @WebServlet(name = "ServicioRegistro", urlPatterns = {"/ServicioRegistro"})
 
 @MultipartConfig
@@ -94,3 +94,4 @@ public class ServicioRegistro extends HttpServlet {
     GestorBase servicio = new GestorBase();
 
 }
+*/

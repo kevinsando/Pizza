@@ -14,19 +14,21 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <link rel="shortcut icon" href="pizza.png">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/defaultP.css" rel="stylesheet" type="text/css"/>
+        <base href="http://localhost:8080/SistemaPizzeria/">
         <script src="js/getJSON.js" type="text/javascript"></script>
         <script src="js/scriptReg.js" type="text/javascript"></script>
         <title>Planet Pizza- Registro</title>
     </head>
-    <body  id ="reg" onload="init();">
+    <body  id ="reg">
         <div id="wrapper">
             <header></header>
             <section>
                 <div id="contents">
-                    <form action="Login.jsp" method="POST" onsubmit="return guardarRegistro();">
+                    <form id="reg-form" action="javascript:guardarRegistro()" method="POST" >
                         <table class="logins">
                             <thead>
                                 <tr>
